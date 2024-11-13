@@ -3,6 +3,9 @@ package org.example.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name = "CLIENT")
@@ -15,4 +18,7 @@ public class Client {
 
     @Column(name = "NAME", length = 200, nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ticket> tickets = new ArrayList<>();
 }
